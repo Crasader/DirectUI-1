@@ -3925,17 +3925,18 @@ FILETIME timet2filetime(time_t timer)
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 class TUnzip
-{ public:
-  TUnzip() : uf(0), currentfile(-1), czei(-1) {}
+{ 
+public:
+	TUnzip() : uf(0), currentfile(-1), czei(-1) {}
 
-  unzFile uf; int currentfile; ZIPENTRY cze; int czei;
-  TCHAR rootdir[MAX_PATH];
+	unzFile uf; int currentfile; ZIPENTRY cze; int czei;
+	TCHAR rootdir[MAX_PATH];
 
-  ZRESULT Open(void *z,unsigned int len,DWORD flags);
-  ZRESULT Get(int index,ZIPENTRY *ze);
-  ZRESULT Find(const TCHAR *name,bool ic,int *index,ZIPENTRY *ze);
-  ZRESULT Unzip(int index,void *dst,unsigned int len,DWORD flags);
-  ZRESULT Close();
+	ZRESULT Open(void *z,unsigned int len,DWORD flags);
+	ZRESULT Get(int index,ZIPENTRY *ze);
+	ZRESULT Find(const TCHAR *name,bool ic,int *index,ZIPENTRY *ze);
+	ZRESULT Unzip(int index,void *dst,unsigned int len,DWORD flags);
+	ZRESULT Close();
 };
 
 
@@ -3961,7 +3962,8 @@ ZRESULT TUnzip::Open(void *z,unsigned int len,DWORD flags)
 }
 
 ZRESULT TUnzip::Get(int index,ZIPENTRY *ze)
-{ if (index<-1 || index>=(int)uf->gi.number_entry) 
+{ 
+	if (index<-1 || index>=(int)uf->gi.number_entry) 
 	return ZR_ARGS;
   if (currentfile!=-1) 
 	  unzCloseCurrentFile(uf); 
